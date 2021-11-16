@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1636985299 source:d:\kuliah\semester 1\pemrograman dasar\tugas\modul 4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
