@@ -1,128 +1,117 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void selectionShort(int A[], int n) {
-    int temp;
 
-    for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j < n; j++) {
-            if (A[i] > A[j]) {
-                temp = A[i];
-                A[i] = A[j];
-                A[j] = temp;
+void sorting(int array[], int length){
+
+    int i, j, obj;
+
+    for(i = 0; i < length; i++){
+        for(j = i+1; j < length; j++){
+            if(array[i] > array[j]){
+                obj = array[i];
+                array[i] = array[j];
+                array[j] = obj;
             }
         }
     }
-}
-
-int shortOrdo2(int array[2][2], int kode) {
-
-    int z[100], index = 0;
-
-    for (int a = 0; a < 2; a++) {
-        for (int b = 0; b < 2; b++) {
-            z[index] = array[a][b];
-            index++;
-        }
-    }
-
-    selectionShort(z, index);
-
-    if (kode == 1) {
-        return z[0];
-    } else {
-        return z[index - 1];
-    }
-}
-
-int shortOrdo3(int array[3][3], int kode) {
-
-    int z[100], index = 0;
-
-    for (int a = 0; a < 3; a++) {
-        for (int b = 0; b < 3; b++) {
-            z[index] = array[a][b];
-            index++;
-        }
-    }
-
-    selectionShort(z, index);
-
-    if (kode == 1) {
-        return z[0];
-    } else {
-        return z[index - 1];
-    }
-}
-
-void ordo2(void) {
-    int array[2][2];
-    int no = 1;
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
-            printf("%d. Masukan index matrix [%d][%d] : ", no, i, j);
-            scanf("%d", &array[i][j]);
-            no++;
-        }
-    }
-
-    printf("\nMatriks : \n\n");
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 2; j++) {
-            printf("%d\t", array[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("Bilangan Terkecil : %d\n", shortOrdo2(array, 1));
-    printf("Bilangan Terbesar : %d", shortOrdo2(array, 2));
 
 }
 
-void ordo3(void) {
-    int array[3][3];
-    int no = 1;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            printf("%d. Masukan index matrix [%d][%d] : ", no, i, j);
-            scanf("%d", &array[i][j]);
-            no++;
-        }
-    }
 
-    printf("\nMatriks : \n\n");
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            printf("%d\t", array[i][j]);
-        }
-        printf("\n");
-    }
+int main(void){
 
-    printf("Bilangan Terkecil : %d\n", shortOrdo3(array, 1));
-    printf("Bilangan Terbesar : %d", shortOrdo3(array, 2));
+    int menu, i, j, length;
 
-}
+    up:
 
-int main(void) {
-
-    int menu;
-
-    printf("Pilih ordo matriks : \n\n");
+    printf("==== SILAHKAN PILIH MENU ====\n");
     printf("1. Ordo 2x2\n");
-    printf("2. Ordo 3x3\n\n");
+    printf("2. Ordo 3x3\n");
+    printf("3. Exit\n\n");
+    printf("[~] Pilih : "); scanf("%d", &menu);
 
-    printf("Pilih : ");
-    scanf("%d", &menu);
-    printf("\n");
 
-    switch (menu) {
-    case 1:
-        ordo2();
-        break;
-    case 2:
-        ordo3();
-        break;
-    default:
+    if(menu == 1){
+        int array[2][2];
+        int convert[4];
+        length = 0;
+
+        printf("=== INPUT MATRIX ===\n\n");
+
+        for(i = 0; i < 2; i++){
+            for(j = 0; j < 2; j++){
+                printf("[+] Matrix index [%d][%d] : ", i, j); scanf("%d", &array[i][j]);
+            }
+        }
+
+        printf("=== RESULT MATRIX ===\n\n");
+
+        for(i = 0; i < 2; i++){
+            for(j = 0; j < 2; j++){
+                printf("%d\t", array[i][j]);
+                convert[length] = array[i][j];
+                length++;
+            }
+
+            printf("\n");
+        }
+
+        sorting(convert, length);
+
+        printf("\nSmallest : %d", convert[0]);
+        printf("\nBiggest : %d", convert[length-1]);
+
+        fflush(stdin);
+        printf("\n\nKlik enter untuk memulai ulang program..."); getchar();
+
+
+    }else if(menu == 2){
+
+        int array[3][3];
+        int convert[9];
+        length = 0;
+
+        printf("=== INPUT MATRIX ===\n\n");
+
+        for(i = 0; i < 3; i++){
+            for(j = 0; j < 3; j++){
+                printf("[+] Matrix index [%d][%d] : ", i, j); scanf("%d", &array[i][j]);
+            }
+        }
+
+        printf("=== RESULT MATRIX ===\n\n");
+
+        for(i = 0; i < 3; i++){
+            for(j = 0; j < 3; j++){
+                printf("%d\t", array[i][j]);
+                convert[length] = array[i][j];
+                length++;
+            }
+
+            printf("\n");
+        }
+
+        sorting(convert, length);
+
+        printf("\nSmallest : %d", convert[0]);
+        printf("\nBiggest : %d", convert[length-1]);
+
+        fflush(stdin);
+        printf("\n\nKlik enter untuk memulai ulang program..."); getchar();
+
+
+    }else if(menu == 3){
+
+        printf("Menutup program...");
         return 0;
+    }else {
+
+        fflush(stdin);
+        printf("Menu tidak ditemukan, klik enter untuk memulai ulang program..."); getchar();
     }
+
+
+    system("cls");
+    goto up;
 }
